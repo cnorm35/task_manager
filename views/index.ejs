@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title><link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<h3><%= title %></h3>
+	<table class='table table-striped'>
+		<thead>
+			<th>Tasks</th>
+			<th>Priority</th>
+			<th>Deadline</th>
+			<th>Created</th>
+			<th>Actions</th>
+		</thead>
+		<tbody>
+			<% for(var x in tasks){%>
+			<tr>
+				<td><%= tasks[x].task %></td>
+				<td><%= tasks[x].priority %></td>
+				<td><%= tasks[x].deadline %></td>
+				<td><%= tasks[x].created %></td>
+				<td><a href='/tasks/destroy/<%= tasks[x]._id %>'><button class='btn btn-danger'>DELETE</button></a></td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+
+	<div class='row'>
+		<div class='col-md-6'>
+			<h3>Add new task</h3>
+			<form action='tasks/create' method='post'>
+				Task Name: <input type='text' name='task' class='form-control'/>
+				Priority: <select class='form-control' name='priority'>
+						  	<option value ='HIGH'>HIGH</option>
+						  	<option value ='HIGH'>MEDIUM</option>
+						  	<option value ='HIGH'>LOW</option>
+						  </select>	
+				Date:	<input type='date' name='deadline' class='form-control'/>
+						<input type='submit' value='Create' class='btn btn-success pull-right'/>
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>
